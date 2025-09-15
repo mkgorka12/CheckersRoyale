@@ -16,6 +16,25 @@ public class CheckersBoard {
         reset();
     }
 
+    public CheckersBoard(CheckersBoard board){
+        for (int row = 0; row < Constant.NUMBER_OF_SQUARES_IN_ROW; ++row) {
+            for (int col = 0; col < Constant.NUMBER_OF_SQUARES_IN_ROW; ++col) {
+                BOARD[row][col] = board.BOARD[row][col];
+
+                if (board.BOARD[row][col] != null) {
+                    Position position = new Position(row, col);
+                    Piece piece = new Piece(board.BOARD[row][col]);
+
+                    if (board.BOARD[row][col].isWhite()) {
+                        WHITE_PIECES.put(position, piece);
+                    } else {
+                        BLACK_PIECES.put(position, piece);
+                    }
+                }
+            }
+        }
+    }
+
     private Piece createPiece(Position position) {
         Piece piece = null;
         boolean isInBlackTile = position.isInBlackTile();

@@ -1,5 +1,7 @@
 package org.mkgorka.checkersroyale.model;
 
+import org.mkgorka.checkersroyale.Constant;
+
 import java.util.Objects;
 
 public class Position {
@@ -26,6 +28,15 @@ public class Position {
 
     public boolean isInBlackTile() {
         return (ROW + COL) % 2 == 1;
+    }
+
+    public Position add(int rowOffset, int colOffset){
+        return new Position(ROW + rowOffset, COL + colOffset);
+    }
+
+    public boolean isWithinBounds() {
+        return ROW >= 0 && ROW < Constant.NUMBER_OF_SQUARES_IN_ROW
+                && COL >= 0 && COL < Constant.NUMBER_OF_SQUARES_IN_ROW;
     }
 
     @Override
